@@ -1,0 +1,290 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>History</title>
+  <script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="./js/jQueryRotate.js"></script>
+<script type="text/javascript" src="./js/data.js"></script>
+
+<!-- 地图 -->
+<script src='./js/mapbox/mapbox_v2.1.4.js'></script>
+<link href='./css/mapbox/mapbox_v2.1.4.css' rel='stylesheet' />
+<!-- 放大缩小 begin-->
+<script src='./js/mapbox/L.Control.Zoomslider_v0.7.0.js'></script>
+<link href='./css/mapbox/L.Control.Zoomslider_v0.7.0.css' rel='stylesheet' />
+
+<script type="text/javascript" src="./js/historyMap.js"></script>
+<script type="text/javascript" src="./js/car.js"></script>
+
+  <!-- ECharts单文件引入 -->
+  <script src="./js/chart/echarts-all.js"></script>
+  <script src="./js/chart/car-chart.js"></script>
+  <!-- 日历 -->
+<script type="text/javascript" src="./js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+<link href="./js/jquery-ui-1.11.2/jquery-ui.min.css" rel="stylesheet">
+<script type="text/javascript" src="./js/datetimepicker/jquery-ui-timepicker-addon.min.js"></script>
+<link type="text/css" href="./js/datetimepicker/jquery-ui-timepicker-addon.min.css" rel="stylesheet" />
+<link href="css/history.css" rel="stylesheet" type="text/css" />
+ <style type="text/css">
+ /* Adjustments to account for mapbox.css box-sizing rules */
+.leaflet-control-zoomslider-knob {
+  width: 14px;
+  height: 6px;
+}
+
+.leaflet-container .leaflet-control-zoomslider-body {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+  .ui-datepicker {
+    font-size: 78%;
+} 
+</style>
+<!-- end -->
+ </style>
+<script type="text/javascript" src="mSelect.js"></script>
+<script type="text/javascript">
+	var mySelect = new mSelect('mySelect', 'mSelect.css');
+	window.onload = function() {
+		var aS = document.getElementsByTagName('select');
+		for ( var i = 0; i < aS.length; i++) {
+			switch (aS[i].getAttribute('mSty')) {
+			case 'redLine':
+				mySelect.Create(aS[i], 'redLine');
+				break;
+			case 'blueCircle':
+				mySelect.Create(aS[i], 'blueCircle', true);
+				break;
+			case 'orangeHeart':
+				mySelect.Create(aS[i], 'orangeHeart', true);
+				break;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+  <div id="bodydiv">
+    <div id="header">
+      <div class="logo">
+        <img src="images/logo.png" />
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="now.html"><img src="images/now.png" /></a></li>
+          <li><a href="History.html"><img src="images/history.png" /></a></li>
+          <li><a href="#"><img src="images/reports.png" /></a></li>
+          <li><a href="#"><img src="images/service.png" /></a></li>
+          <li><a href="#"><img src="images/account.png" /></a></li>
+        </ul>
+      </div>
+      <!--menu -->
+      <div class="menuright">
+        <ul>
+          <li style="width: 220px; line-height: 60px">Company,inc.<span style="color: #a4b1c3"> Name of User</span></li>
+          <li><a href="#"><img src="images/exit.png" /></a></li>
+        </ul>
+      </div>
+      <!--menuright -->
+    </div>
+    <!--header -->
+    <div class="clear"></div>
+    <div id="side">
+      <div id="map">
+      <div id="historyMap">
+
+      </div>
+       <!--  <div class="mapbutton">
+          <ul>
+            <li><a href="#">Map</a></li>
+            <li><a href="#">Hybird</a></li>
+          </ul>
+        </div>
+        mapbutton
+        <div class="carstar">
+          <p>A</p>
+        </div>
+        档记A
+        <div class="speedtime">
+          <p>Speed：48km/h | 17:15:47</p>
+        </div> -->
+        
+        <!-- 车辆时速的div 开始 -->
+        <div class="chat">
+          <!-- <p>Vehichle speed</p> -->
+          <div class="charttab">
+          <div id="chart" style="width:773px;height:130px;"></div>
+          
+          </div>
+
+        </div>
+        <!-- 车辆时速的div 结束 -->
+        
+        
+      </div>
+      <!--map -->
+      <div id="rightside">
+        <div class="listpng">
+          <div>
+            <p>
+              <select id="terminal_group" name="addr" mSty="blueCircle" onchange=javascript:changeList(this.options[this.selectedIndex].value);>
+                <option>选择</option><!-- javascript:changeList(this.options[this.selectedIndex].value); -->
+              </select>
+            </p>
+          </div>
+        </div>
+        <!--listpntDiv -->
+        <div class="calendar" >
+        <input type="hidden" id="actualDate" name="actualDate"/>
+        <div id='datepicker' style="height: 210px;"><!-- 这里插入日历，宽：220 高230 -->
+        </div>
+        <div align="center"><input id="timeStart" name="timeStart" value="00:00" size="10"/>&nbsp;&nbsp;to&nbsp;&nbsp;<input id="timeEnd" name="timeEnd" value="23:59" size="10"/></div>
+        </div>
+
+        <div class="carlist">
+          <div class="line2"></div>
+          <div class="calendarlist">
+            <ul>
+              <li><a href="javascript:;" id="trckkey" target="_self">trck1</a></li>
+              <li style="width: 80px;">Driving</li>
+            </ul>
+          </div>
+          <div id="content">
+            <div class="hiddendiv">
+              <ul>
+                <li><ul>
+                    <li>Active time&nbsp;&nbsp;</li>
+                    <li
+                      style="background: #6aa74d; width: 70px; height: 14px; font-size: 11px; line-height: 14px; color: #FFF; margin-top: 4px; margin-left: 5px;">06:34~13:36</li>
+                  </ul></li>
+                <li><ul>
+                    <li>Distance&nbsp;&nbsp;</li>
+                    <li
+                      style="background: #00a5a4; width: 70px; height: 14px; font-size: 11px; line-height: 14px; color: #FFF; margin-top: 4px; margin-left: 5px;">06:34~13:36</li>
+                  </ul></li>
+                <li><ul>
+                    <li>Egine hrs&nbsp;&nbsp;</li>
+                    <li
+                      style="background: #e68000; width: 70px; height: 14px; font-size: 11px; line-height: 14px; color: #FFF; margin-top: 4px; margin-left: 5px;">06:34~13:36</li>
+                  </ul></li>
+                <li><ul>
+                    <li>Mar Speed&nbsp;&nbsp;</li>
+                    <li
+                      style="background: #ff2a21; width: 70px; height: 14px; font-size: 11px; line-height: 14px; color: #FFF; margin-top: 4px; margin-left: 5px;">06:34~13:36</li>
+                  </ul></li>
+
+              </ul>
+            </div>
+            <!--hiddendiv-->
+          </div>
+          <!--content-->
+          <div class="clear"></div>
+          <div class="line2"></div>
+          <div class="calendarlist">
+            <ul>
+              <li><a href="#">trck2</a></li>
+              <li style="width: 80px;">Driving</li>
+            </ul>
+          </div>
+          <div class="line2"></div>
+          <div class="calendarlist">
+            <ul>
+              <li><a href="#">trck3</a></li>
+              <li style="width: 80px;">Driving</li>
+            </ul>
+          </div>
+          <div class="line2"></div>
+          <div class="calendarlist">
+            <ul>
+              <li><a href="#">trck4</a></li>
+              <li style="width: 80px;">Driving</li>
+            </ul>
+          </div>
+          <div class="line2"></div>
+          <div class="calendarlist">
+            <ul>
+              <li><a href="#">trck5</a></li>
+              <li style="width: 80px;">Driving</li>
+            </ul>
+          </div>
+          <div class="line2"></div>
+          <div class="calendarlist">
+            <ul>
+              <li><a href="#">trck6</a></li>
+              <li style="width: 80px;">Driving</li>
+            </ul>
+          </div>
+          <div class="line2"></div>
+          <div class="calendarlist">
+            <ul>
+              <li><a href="#">trck7</a></li>
+              <li style="width: 80px;">Driving</li>
+            </ul>
+          </div>
+          <div class="line2"></div>
+          <div class="calendarlist">
+            <ul>
+              <li><a href="#">trck8</a></li>
+              <li style="width: 80px;">Driving</li>
+            </ul>
+          </div>
+          <div class="line2"></div>
+        </div>
+
+
+      </div>
+      <!--carlist -->
+    </div>
+    <!--rightside -->
+  </div>
+  <!--sideDiv -->
+  </div>
+  <!--bodydiv -->
+
+  <script type="text/javascript">
+$(function() {
+  $("#trck"+"key").click(function() {
+    $(this).text($("#content").is(":hidden") ? "trck1" : "trck1");
+    $("#content").slideToggle();
+  });
+  
+  //car.initCars(carlist0);//初始化markers
+  function changeList(groupId){
+	  global.map.removeLayer(car.featureLayer);
+	  var cb = function(resData){
+			car.carListInit(resData);//初始化右边列表
+			car.initCars(resData);// 初始化markers
+	  };
+	  dataUtil.invokeLinkCarListApi(groupId,cb);
+  }
+ $( "#datepicker" ).datepicker({//宽：220 高230
+		inline: true,
+		altField: "#actualDate",
+		altFormat: "yy/mm/dd",
+	/* 	onSelect: function(dateText, inst){
+			alert(dateText);
+		} */
+	});
+ 
+ $('#timeStart').timepicker({
+		//hourGrid: 4,
+		//minuteGrid: 10,
+		timeFormat: 'HH:mm',
+		defaultValue:'00:00'
+	});
+ 
+ $('#timeEnd').timepicker({
+		//hourGrid: 4,
+		//minuteGrid: 10,
+		timeFormat: 'HH:mm',
+		defaultValue:'23:59',
+/* 		onSelect:function(timeText, instance){
+			console.log("==="+timeText);
+		} */
+	});
+});
+</script>
+</body>
+</html>
