@@ -50,7 +50,8 @@ var myChart = echarts.init(document.getElementById('chart'));
 			        mes += '  dataIndex : ' + param.dataIndex;
 			    }
 			    if (param.type == 'hover') {
-			    	console.log('获得车辆坐标！');
+			    	alert('根据选择的时间点定位地图上的轨迹？');
+			    	//console.log('获得车辆坐标！');
 			        //document.getElementById('hover-console').innerHTML = 'Event Console : ' + mes;
 			    }
 			    else {

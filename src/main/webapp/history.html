@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>History</title>
   <script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="./js/jQueryRotate.js"></script>
-  
-  <script type="text/javascript" src="./js/global/global.js"></script>
+
+<script type="text/javascript" src="./js/global/global.js"></script>
 <script type="text/javascript" src="./js/api/dataUtil.js"></script>
 
 <!-- 地图 -->
@@ -23,9 +23,11 @@
   <script src="./js/chart/echarts-all.js"></script>
   <script src="./js/chart/car-chart.js"></script>
   <!-- 日历 -->
-<script type="text/javascript" src="./js/picker/js/jquery.datePicker-min.js"></script>
-<link type="text/css" href="./js/picker/css/datePicker.css" rel="stylesheet" />
-  
+<script type="text/javascript" src="./js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+<link href="./js/jquery-ui-1.11.2/jquery-ui.min.css" rel="stylesheet">
+<script type="text/javascript" src="./js/datetimepicker/jquery-ui-timepicker-addon.min.js"></script>
+<link type="text/css" href="./js/datetimepicker/jquery-ui-timepicker-addon.min.css" rel="stylesheet" />
+<link href="css/history.css" rel="stylesheet" type="text/css" />
  <style type="text/css">
  /* Adjustments to account for mapbox.css box-sizing rules */
 .leaflet-control-zoomslider-knob {
@@ -38,6 +40,9 @@
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
+  .ui-datepicker {
+    font-size: 78%;
+} 
 </style>
 <!-- end -->
 <script type="text/javascript" src="mSelect.js"></script>
@@ -108,7 +113,7 @@
       <!--map -->
       <div id="rightside">
         <div class="listpng">
-           <div>
+          <div>
             <p>
               <select id="terminal_group" name="addr" mSty="blueCircle" onchange=javascript:changeList(this.options[this.selectedIndex].value);>
                 <option>选择</option><!-- javascript:changeList(this.options[this.selectedIndex].value); -->
@@ -117,8 +122,12 @@
           </div>
         </div>
         <!--listpntDiv -->
-        <div id='calendar' class="calendar" style="width:220px;height:230px;">这里插入日历，宽：220 高230
-</div>
+        <div class="calendar" >
+        <input type="hidden" id="actualDate" name="actualDate"/>
+        <div id='datepicker' style="height: 210px;"><!-- 这里插入日历，宽：220 高230 -->
+        </div>
+        <div align="center"><input id="timeStart" name="timeStart" value="00:00" size="10"/>&nbsp;&nbsp;to&nbsp;&nbsp;<input id="timeEnd" name="timeEnd" value="23:59" size="10"/></div>
+        </div>
 
         <div class="carlist">
           <div class="line2"></div>
@@ -228,22 +237,41 @@ $(function() {
   });
   
   //car.initCars(carlist0);//初始化markers
-  
-	$("#calendar").datePicker({//宽：220 高230
-		inline:true,
-		selectMultiple:false,
-		minDate: new Date(2007, 1 - 1, 1)
-	});
-});
-
-function changeList(groupId){
-	 /*  global.map.removeLayer(car.featureLayer);
+  function changeList(groupId){
+	  global.map.removeLayer(car.featureLayer);
 	  var cb = function(resData){
 			car.carListInit(resData);//初始化右边列表
 			car.initCars(resData);// 初始化markers
 	  };
-	  dataUtil.invokeLinkCarListApi(groupId,cb); */
-}
+	  dataUtil.invokeLinkCarListApi(groupId,cb);
+  }
+ $( "#datepicker" ).datepicker({//宽：220 高230
+		inline: true,
+		altField: "#actualDate",
+		altFormat: "yy/mm/dd",
+	/* 	onSelect: function(dateText, inst){
+			alert(dateText);
+		} */
+	});
+ 
+ $('#timeStart').timepicker({
+		//hourGrid: 4,
+		//minuteGrid: 10,
+		timeFormat: 'HH:mm',
+		defaultValue:'00:00'
+	});
+ 
+ $('#timeEnd').timepicker({
+		//hourGrid: 4,
+		//minuteGrid: 10,
+		timeFormat: 'HH:mm',
+		defaultValue:'23:59',
+ 		onSelect:function(timeText, instance){
+			alert('date='+$('#actualDate').val()+",startTime="+$('#timeStart').val()+',endTime='+timeText+';this values will send to api via ajax!');
+ 			//console.log("==="+timeText);
+		}
+	});
+});
 </script>
 </body>
 </html>
