@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Example Page</title>
+	<link href="../jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet">
+	<link href="./jquery-ui-timepicker-addon.min.css" rel="stylesheet">
+</head>
+<body>
+<style>
+ .ui-datepicker {
+    font-size: 80%;
+}
+  </style>
+<!-- Slider -->
+<h2 class="demoHeaders">Slider</h2>
+<div id="slider"></div>
+
+Datepicker
+<h2 class="demoHeaders">Datepicker</h2>
+<div id="datepicker"></div>
+
+<input type="text" value="" id="slider_example_1" name="slider_example_1">
+<input type="text" value="" id="actualDate" name="actualDate">
+
+<script src="../jquery-1.9.1.min.js"></script>
+<script src="../jquery-ui-1.11.2/jquery-ui.js"></script>
+<script src="./jquery-ui-timepicker-addon.min.js"></script>
+<script src="./jquery-ui-sliderAccess.js"></script>
+<script>
+$(function(){
+	
+ $( "#datepicker" ).datepicker({
+	inline: true,
+	altField: "#actualDate",
+	altFormat: "yy/mm/dd",
+/* 	onSelect: function(dateText, inst){
+		alert(dateText);
+	} */
+});
+
+$( "#slider" ).slider({
+	range: true,
+	values: [ 17, 67 ]
+});
+ 
+$('#slider_example_1').timepicker({
+	//hourGrid: 4,
+	//minuteGrid: 10,
+	timeFormat: 'HH:mm',
+	defaultValue:'00:00'
+});
+})
+</script>
+</body>
+</html>
