@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>History</title>
+<script type="text/javascript" src="mSelect.js"></script>
+<script type="text/javascript">
+var mySelect=new mSelect('mySelect','mSelect.css');
+window.onload=function(){
+	var aS=document.getElementsByTagName('select');
+	for (var i=0;i<aS.length;i++){
+		switch(aS[i].getAttribute('mSty')){
+			case 'redLine':
+				mySelect.Create(aS[i],'redLine');
+				break;
+			case 'blueCircle':
+				mySelect.Create(aS[i],'blueCircle',true);
+				break;
+			case 'orangeHeart':
+				mySelect.Create(aS[i],'orangeHeart',true);
+				break;
+		}
+	}
+}
+</script>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="bodydiv">
+<div id="header">
+<div class="logo"><img src="images/logo.png" /></div>
+<div class="menu"><ul>
+<li> <a href="now.html"><img src="images/now.png" /></a></li>
+<li> <a href="History.html"><img src="images/history.png" /></a></li>
+<li> <a href="#"><img src="images/reports.png" /></a></li>
+<li> <a href="#"><img src="images/service.png" /></a></li>
+<li> <a href="#"><img src="images/account.png" /></a></li></ul>
+</div><!--menu -->
+<div class="menuright">
+<ul><li style="width:220px; line-height:60px">Company,inc.<span style="color:#a4b1c3"> Name of User</span></li>
+<li><a href="#"><img src="images/exit.png" /></a></li>
+</ul>
+</div><!--menuright -->
+</div><!--header -->
+<div class="clear"></div>
+<div id="side">
+<div id="map">
+<div class="mapbutton">
+<ul>
+<li><a href="#">Map</a></li>
+<li><a href="#">Hybird</a></li>
+</ul>
+</div><!--mapbutton-->
+<div class="carstar"><p>A</p></div><!--档记A-->
+<div class="speedtime"><p>Speed：48km/h | 17:15:47</p></div>
+<div class="chat">
+<p>Vehichle speed</p>
+<div class="charttab"><img src="images/chart.png" /></div>
+
+</div>
+</div><!--map -->
+<div id="rightside">
+<div class="listpng">
+<div><p>  
+<select name="addr" mSty="blueCircle">
+    <option>MapList</option>
+    <option>湘65333</option>
+    <option value="2">世界的</option>
+    <option value="3">沃尔沃C04</option>
+    <option value="4">沪49422</option>
+    <option value="5">京H2343</option>
+    <option value="6">粤J39997</option>
+  </select>
+</p></div>
+ </div><!--listpntDiv -->
+ <div class="calendar">这里插入日历，宽：220 高230</div>
+ 
+  <div class="carlist">
+  <div class="line2"></div>
+  <div class="calendarlist">
+ <ul><li><a href="javascript:;" id="trckkey" target="_self">trck1</a></li>
+ <li style="width:80px;">Driving</li>
+ </ul></div>
+<div id="content">
+<div class="hiddendiv">
+<ul>
+<li><ul>
+<li>Active time&nbsp;&nbsp;</li>
+<li style="background:#6aa74d; width:70px; height:14px; font-size:11px; line-height:14px; color:#FFF; margin-top:4px; margin-left:5px;">06:34~13:36</li>
+</ul></li>
+<li><ul>
+<li>Distance&nbsp;&nbsp;</li>
+<li style="background:#00a5a4; width:70px; height:14px; font-size:11px; line-height:14px; color:#FFF; margin-top:4px; margin-left:5px;">06:34~13:36</li>
+</ul></li>
+<li><ul>
+<li>Egine hrs&nbsp;&nbsp;</li>
+<li style="background:#e68000; width:70px; height:14px; font-size:11px; line-height:14px; color:#FFF; margin-top:4px; margin-left:5px;">06:34~13:36</li>
+</ul></li>
+<li><ul>
+<li>Mar Speed&nbsp;&nbsp;</li>
+<li style="background:#ff2a21; width:70px; height:14px; font-size:11px; line-height:14px; color:#FFF; margin-top:4px; margin-left:5px;">06:34~13:36</li>
+</ul></li>
+
+</ul></div><!--hiddendiv-->
+</div><!--content-->
+ <div class="clear"></div>
+  <div class="line2"></div>
+  <div class="calendarlist">
+ <ul><li><a href="#">trck2</a></li>
+ <li style="width:80px;">Driving</li>
+ </ul></div>
+ <div class="line2"></div>
+  <div class="calendarlist">
+ <ul><li><a href="#">trck3</a></li>
+ <li style="width:80px;">Driving</li>
+ </ul></div>
+ <div class="line2"></div>
+  <div class="calendarlist">
+ <ul><li><a href="#">trck4</a></li>
+ <li style="width:80px;">Driving</li>
+ </ul></div>
+ <div class="line2"></div> <div class="calendarlist">
+ <ul><li><a href="#">trck5</a></li>
+ <li style="width:80px;">Driving</li>
+ </ul></div>
+ <div class="line2"></div> <div class="calendarlist">
+ <ul><li><a href="#">trck6</a></li>
+ <li style="width:80px;">Driving</li>
+ </ul></div>
+ <div class="line2"></div> <div class="calendarlist">
+ <ul><li><a href="#">trck7</a></li>
+ <li style="width:80px;">Driving</li>
+ </ul></div>
+ <div class="line2"></div> <div class="calendarlist">
+ <ul><li><a href="#">trck8</a></li>
+ <li style="width:80px;">Driving</li>
+ </ul></div>
+ <div class="line2"></div>
+ </div>
+ 
+ 
+</div><!--carlist -->
+</div><!--rightside -->
+</div><!--sideDiv -->
+</div><!--bodydiv -->
+
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+$(function() {
+$("#trck"+"key").click(function() {
+$(this).text($("#content").is(":hidden") ? "trck1" : "trck1");
+$("#content").slideToggle();
+});
+});
+</script>
+</body>
+</html>

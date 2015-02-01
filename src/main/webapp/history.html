@@ -1,11 +1,13 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>History</title>
   <script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="./js/jQueryRotate.js"></script>
-<script type="text/javascript" src="./js/data.js"></script>
+  
+  <script type="text/javascript" src="./js/global/global.js"></script>
+<script type="text/javascript" src="./js/api/dataUtil.js"></script>
 
 <!-- 地图 -->
 <script src='./js/mapbox/mapbox_v2.1.4.js'></script>
@@ -14,18 +16,16 @@
 <script src='./js/mapbox/L.Control.Zoomslider_v0.7.0.js'></script>
 <link href='./css/mapbox/L.Control.Zoomslider_v0.7.0.css' rel='stylesheet' />
 
-<script type="text/javascript" src="./js/historyMap.js"></script>
-<script type="text/javascript" src="./js/car.js"></script>
+<script type="text/javascript" src="./js/history/historyCar.js"></script>
+<script type="text/javascript" src="./js/history/historyInit.js"></script>
 
   <!-- ECharts单文件引入 -->
   <script src="./js/chart/echarts-all.js"></script>
   <script src="./js/chart/car-chart.js"></script>
   <!-- 日历 -->
-<script type="text/javascript" src="./js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
-<link href="./js/jquery-ui-1.11.2/jquery-ui.min.css" rel="stylesheet">
-<script type="text/javascript" src="./js/datetimepicker/jquery-ui-timepicker-addon.min.js"></script>
-<link type="text/css" href="./js/datetimepicker/jquery-ui-timepicker-addon.min.css" rel="stylesheet" />
-<link href="css/history.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="./js/picker/js/jquery.datePicker-min.js"></script>
+<link type="text/css" href="./js/picker/css/datePicker.css" rel="stylesheet" />
+  
  <style type="text/css">
  /* Adjustments to account for mapbox.css box-sizing rules */
 .leaflet-control-zoomslider-knob {
@@ -38,32 +38,13 @@
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
-  .ui-datepicker {
-    font-size: 78%;
-} 
 </style>
 <!-- end -->
- </style>
 <script type="text/javascript" src="mSelect.js"></script>
 <script type="text/javascript">
 	var mySelect = new mSelect('mySelect', 'mSelect.css');
-	window.onload = function() {
-		var aS = document.getElementsByTagName('select');
-		for ( var i = 0; i < aS.length; i++) {
-			switch (aS[i].getAttribute('mSty')) {
-			case 'redLine':
-				mySelect.Create(aS[i], 'redLine');
-				break;
-			case 'blueCircle':
-				mySelect.Create(aS[i], 'blueCircle', true);
-				break;
-			case 'orangeHeart':
-				mySelect.Create(aS[i], 'orangeHeart', true);
-				break;
-			}
-		}
-	}
 </script>
+<link href="css/history.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div id="bodydiv">
@@ -127,7 +108,7 @@
       <!--map -->
       <div id="rightside">
         <div class="listpng">
-          <div>
+           <div>
             <p>
               <select id="terminal_group" name="addr" mSty="blueCircle" onchange=javascript:changeList(this.options[this.selectedIndex].value);>
                 <option>选择</option><!-- javascript:changeList(this.options[this.selectedIndex].value); -->
@@ -136,12 +117,8 @@
           </div>
         </div>
         <!--listpntDiv -->
-        <div class="calendar" >
-        <input type="hidden" id="actualDate" name="actualDate"/>
-        <div id='datepicker' style="height: 210px;"><!-- 这里插入日历，宽：220 高230 -->
-        </div>
-        <div align="center"><input id="timeStart" name="timeStart" value="00:00" size="10"/>&nbsp;&nbsp;to&nbsp;&nbsp;<input id="timeEnd" name="timeEnd" value="23:59" size="10"/></div>
-        </div>
+        <div id='calendar' class="calendar" style="width:220px;height:230px;">这里插入日历，宽：220 高230
+</div>
 
         <div class="carlist">
           <div class="line2"></div>
@@ -251,40 +228,22 @@ $(function() {
   });
   
   //car.initCars(carlist0);//初始化markers
-  function changeList(groupId){
-	  global.map.removeLayer(car.featureLayer);
+  
+	$("#calendar").datePicker({//宽：220 高230
+		inline:true,
+		selectMultiple:false,
+		minDate: new Date(2007, 1 - 1, 1)
+	});
+});
+
+function changeList(groupId){
+	 /*  global.map.removeLayer(car.featureLayer);
 	  var cb = function(resData){
 			car.carListInit(resData);//初始化右边列表
 			car.initCars(resData);// 初始化markers
 	  };
-	  dataUtil.invokeLinkCarListApi(groupId,cb);
-  }
- $( "#datepicker" ).datepicker({//宽：220 高230
-		inline: true,
-		altField: "#actualDate",
-		altFormat: "yy/mm/dd",
-	/* 	onSelect: function(dateText, inst){
-			alert(dateText);
-		} */
-	});
- 
- $('#timeStart').timepicker({
-		//hourGrid: 4,
-		//minuteGrid: 10,
-		timeFormat: 'HH:mm',
-		defaultValue:'00:00'
-	});
- 
- $('#timeEnd').timepicker({
-		//hourGrid: 4,
-		//minuteGrid: 10,
-		timeFormat: 'HH:mm',
-		defaultValue:'23:59',
-/* 		onSelect:function(timeText, instance){
-			console.log("==="+timeText);
-		} */
-	});
-});
+	  dataUtil.invokeLinkCarListApi(groupId,cb); */
+}
 </script>
 </body>
 </html>

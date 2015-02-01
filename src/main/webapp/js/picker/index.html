@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jquery.datePicker日历控件_演示页_JS代码站</title>
+<meta name="description" content="jquery.datePicker日历控件应用input:text文本框弹出日历表选择日期时间，设置默认显示日历表展示。jquery日历控件下载。" />
+<script type="text/javascript" src="../jQuery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.datePicker-min.js"></script>
+<link type="text/css" href="css/datepicker.css" rel="stylesheet" />
+</head>
+
+<body>
+<link href="/templets/skins/style/yulan.css" rel="stylesheet">
+<div id="header">
+  <div id="top">
+    <div id="warp">
+      <div class="topleft fl"> 
+      </div>
+      <div class="topright fr"><a href="/">返回首页</a></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".datepicker").datePicker({
+		inline:true,
+		selectMultiple:false
+	});
+	
+	$("#datepicker").datePicker({
+		clickInput:true
+	});
+	
+});
+</script>
+
+<h2>jquery.datePicker日历控件应用文本框</h2>
+<input type="text" name="" value="" id="datepicker" />
+
+<div style="height:240px;"></div>
+
+<h2>jquery.datePicker日历控件应用日历表</h2>
+<div class="datepicker"></div>
+
+</body>
+</html>

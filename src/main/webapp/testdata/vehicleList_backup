@@ -1,0 +1,1 @@
+{"vehicles":[{"id":"1","terminalId":"001","remark":"truck_1","longitude":"113.31572","latitude":"23.13002","status":"stop","direction":"W"},{"id":"2","terminalId":"002","remark":"truck_2","longitude":"113.30993","latitude":"23.12686","status":"driving","direction":"E"}]}

@@ -1,0 +1,12 @@
+/*redLine*/
+
+.blueCircle_mSel_list {display:none;position:absolute;margin:-4px 0 0;padding:0;list-style:none;text-align:left;font-size:13px;width:190px;z-index:10008;}
+.blueCircle_mSel_list li {background-color:#fcfcfc;border:#6D92AB solid;border-width:0 2px;height:25px;}
+.blueCircle_mSel_list li.mSel_start {line-height:0;font-size:0;height:5px;}
+.blueCircle_mSel_list li.mSel_end {url(../images/blueCircle_bg.gif)no-repeat left bottom;border:none;font-size:0;line-height:0;height:6px;}
+.blueCircle_mSel_list li a {display:block;overflow:hidden;padding:0 10px;line-height:25px;text-decoration:none;color:#79A2BD;height:25px;}
+.blueCircle_mSel_list li a:hover {background-color:#B1C3D9;color:#fff;}
+.blueCircle_mSel_list li.mSel_on a {background-color:#7FA9C6;color:#fff;}
+.blueCircle_mSel_list li a.mSel_disable {font-style:italic;}
+.blueCircle_mSel_list li a.mSel_disable:hover {background:none;color:#79A2BD;}
+

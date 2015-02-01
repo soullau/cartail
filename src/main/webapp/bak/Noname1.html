@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Marker movement</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+
+<div id='map'></div>
+
+<script>
+L.mapbox.accessToken = 'pk.eyJ1Ijoic291bDAzMjgiLCJhIjoiTmp5LXB5YyJ9.tFLqmZTQG5xn_XKAZdYy5Q';
+var map = L.mapbox.map('map', 'beiowolf.map-niz3drxf').setView([-25,140], 8);
+/*
+var featureGroup = L.featureGroup().addTo(map);
+                    var drawControl = new L.Control.Draw({
+                                position: 'topright',
+                                draw: {
+                                    polyline: {
+                                        metric: true
+                                    },
+                                    polygon: {
+                                        allowIntersection: false,
+                                        showArea: true,
+                                        drawError: {
+                                            color: '#b00b00',
+                                            timeout: 1000
+                                        },
+                                        shapeOptions: {
+                                            color: '#bada55'
+                                        }
+                                    },
+                                    circle: {
+                                        shapeOptions: {
+                                            color: '#662d91'
+                                        }
+                                    },
+                                    marker: true
+                                },
+                                edit: {
+                                    featureGroup: featureGroup,
+                                    remove: true
+                                }
+                            });
+                    map.addControl(drawControl);
+                    map.on('draw:created', function (e) {
+                        var type = e.layerType,
+                                layer = e.layer;
+
+                        if (type === 'marker') {
+                            layer.bindPopup('A popup!');
+                        }
+
+                        featureGroup.addLayer(e.layer);
+                    });
+
+                    map.on('draw:edited', function (e) {
+                        var layers = e.layers;
+                        var countOfEditedLayers = 0;
+                        layers.eachLayer(function(layer) {
+                            countOfEditedLayers++;
+                        });
+                        console.log("Edited " + countOfEditedLayers + " layers");
+                    });*/
+/*
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
+
+map.on('click', onMapClick);
+*/
+var popup = L.popup();
+
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+}
+
+map.on('click', onMapClick);
+/*
+var marker = L.marker([-73, 40], {
+    icon: L.mapbox.marker.icon({
+      'marker-color': '#f86767'
+    })
+});
+
+var t = 0;
+window.setInterval(function() {
+    // Making a lissajous curve just for fun.
+    // Create your own animated path here.
+    marker.setLatLng(L.latLng(
+        Math.cos(t * 0.5) * 50,
+        Math.sin(t) * 50));
+    t += 0.1;
+}, 50);
+
+marker.addTo(map);*/
+</script>
+
+
+</body>
+</html>

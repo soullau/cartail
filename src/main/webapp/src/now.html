@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Now</title>
+<script type="text/javascript" src="mSelect.js"></script>
+<script type="text/javascript">
+var mySelect=new mSelect('mySelect','mSelect.css');
+window.onload=function(){
+	var aS=document.getElementsByTagName('select');
+	for (var i=0;i<aS.length;i++){
+		switch(aS[i].getAttribute('mSty')){
+			case 'redLine':
+				mySelect.Create(aS[i],'redLine');
+				break;
+			case 'blueCircle':
+				mySelect.Create(aS[i],'blueCircle',true);
+				break;
+			case 'orangeHeart':
+				mySelect.Create(aS[i],'orangeHeart',true);
+				break;
+		}
+	}
+}
+</script>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="bodydiv">
+<div id="header">
+<div class="logo"><img src="images/logo.png" /></div>
+<div class="menu"><ul>
+<li> <a href="now.html"><img src="images/now.png" /></a></li>
+<li> <a href="History.html"><img src="images/history.png" /></a></li>
+<li> <a href="#"><img src="images/reports.png" /></a></li>
+<li> <a href="#"><img src="images/service.png" /></a></li>
+<li> <a href="#"><img src="images/account.png" /></a></li></ul>
+</div><!--menu -->
+<div class="menuright">
+<ul><li style="width:220px; line-height:60px">Company,inc.<span style="color:#a4b1c3"> Name of User</span></li>
+<li><a href="#"><img src="images/exit.png" /></a></li>
+</ul>
+</div><!--menuright -->
+</div><!--header -->
+<div class="clear"></div>
+<div id="side">
+<div id="map">
+<div class="mapbutton">
+<ul>
+<li><a href="#">Map</a></li>
+<li><a href="#">Hybird</a></li>
+</ul>
+</div><!--mapbutton-->
+<div class="carblack">
+<ul>
+<li><img src="images/carred_direction.png" /></li>
+<li><a href="#">Truck3</a></li>
+</ul>
+</div>
+
+<div class="carpopupinfo">
+<div class="carinfotitle">
+<ul>
+<li><img src="images/carinfo.gif" /></li>
+<li style=" width:110px; text-align:center;">Truck3</li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="carmodel"><ul><li>Toyota commuter</li><li></li>
+<li style="background:url(images/blackrect.gif) no-repeat; width:56px; height:16px; margin-left:3px;color:#FFF"> 123-ABC</li>
+</ul></div>
+<div class="carrunstate">Engune off  20 hrs ago</div>
+<div class="carrunsite"><ul><li>33balaPI,Calamvale,QLD,4116</li></ul></div>
+<div class="carruntime"><ul><li>Wed,Jul 01@1:08:00am</li></ul></div>
+</div><!--carpopupinfo -->
+</div><!--map -->
+<div id="rightside">
+<div class="listpng">
+<div><p>  
+<select name="addr" mSty="blueCircle">
+    <option>MapList</option>
+    <option>湘65333</option>
+    <option value="2">世界的</option>
+    <option value="3">沃尔沃C04</option>
+    <option value="4">沪49422</option>
+    <option value="5">京H2343</option>
+    <option value="6">粤J39997</option>
+  </select>
+</p></div>
+ </div><!--listpntDiv -->
+ <div class="line"><img src="images/line.gif" /></div>
+ <div class="greendiv">
+ <ul><li><img src="images/greenrect.gif" /></li>
+ <li><a href="#">trck3</a></li>
+ <li style="width:80px;">Driving</li>
+ <li style="margin-left:10px;"><img src="images/greenpoint.gif" /></li>
+ </ul></div>
+ 
+ <div class="line"><img src="images/line.gif" /></div>
+ <div class="greendiv">
+ <ul><li><img src="images/bluerect.gif" /></li>
+ <li><a href="#">trck3</a></li>
+ <li style="width:80px;">Stop</li>
+ <li style="margin-left:10px;"><img src="images/bluepoint.gif" /></li>
+ </ul></div>
+ 
+ <div class="line"><img src="images/line.gif" /></div>
+ <div class="greendiv">
+ <ul><li><img src="images/purlerect.gif" /></li>
+<li><a href="#">trck3</a></li>
+ <li style="width:80px;">Engine off</li>
+ <li style="margin-left:10px;"><img src="images/purlepoint.gif" /></li>
+ </ul></div>
+ 
+ <div class="line"><img src="images/line.gif" /></div>
+ <div class="greendiv">
+ <ul><li><img src="images/redrect.gif" /></li>
+ <li><a href="#">trck3</a></li>
+ <li style="width:80px;">Speeding</li>
+ <li style="margin-left:10px;"><img src="images/redpoint.gif" /></li>
+ </ul></div>
+ 
+ <div class="line"><img src="images/line.gif" /></div>
+ <div class="greendiv">
+ <ul><li><img src="images/yellowrect.gif" /></li>
+ <li><a href="#">trck3</a></li>
+ <li style="width:80px;">Idlling</li>
+ <li style="margin-left:10px;"><img src="images/yellowpoint.gif" /></li>
+ </ul></div>
+ 
+ <div class="line"><img src="images/line.gif" /></div>
+ <div class="greendiv">
+ <ul><li><img src="images/liangpurlerect.gif" /></li>
+ <li><a href="#">trck3</a></li>
+ <li style="width:80px;">Disconnect</li>
+ <li style="margin-left:10px;"><img src="images/liangpurlepoint.gif" /></li>
+ </ul></div>
+ 
+ <div class="rectcolor"> </div>
+ 
+ <div class="selecttable">
+ <ul><li><input name="Sound" type="checkbox" value="value" />&nbsp;&nbsp;Sound</li>
+ <li><input name="Traffic Map" type="checkbox" value="value" />&nbsp;&nbsp;Traffic Map</li>
+ </ul></div>
+  <div class="selecttable">
+ <ul><li><input name="Auto-Fit" type="checkbox" value="value" />&nbsp;&nbsp;Auto-Fit</li>
+ <li><input name="Vehicle Lobel" type="checkbox" value="value" />&nbsp;&nbsp;Vehicle Lobel</li>
+</ul></div>
+</div><!--rightside -->
+</div><!--sideDiv -->
+</div><!--bodydiv -->
+</body>
+</html>

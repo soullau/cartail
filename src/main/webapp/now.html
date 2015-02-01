@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<title>now</title>
+<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./js/jQueryRotate.js"></script>
+<!-- 常量与数据 -->
+<script type="text/javascript" src="./js/global/global.js"></script>
+<script type="text/javascript" src="./js/api/dataUtil.js"></script>
+
+<!-- 地图 -->
+<script src='./js/mapbox/mapbox_v2.1.4.js'></script>
+<link href='./css/mapbox/mapbox_v2.1.4.css' rel='stylesheet' />
+<!-- 放大缩小 begin-->
+<script src='./js/mapbox/L.Control.Zoomslider_v0.7.0.js'></script>
+<link href='./css/mapbox/L.Control.Zoomslider_v0.7.0.css' rel='stylesheet' />
+
+<style>
+<!--弹出层的样式 begin-->
+.leaflet-popup-content-wrapper {
+  padding: 0px;
+  text-align: left;
+  pointer-events: all;
+  padding-top: 0px
+}
+
+.leaflet-popup-close-button + .leaflet-popup-content-wrapper .leaflet-popup-content {
+    padding-top: 0px;
+}
+.leaflet-popup-content {
+  padding: 0px;
+  margin: 0px;
+} 
+<!--弹出层的样式 end-->
+
+/* Adjustments to account for mapbox.css box-sizing rules */
+.leaflet-control-zoomslider-knob {
+	width: 14px;
+	height: 6px;
+}
+
+.leaflet-container .leaflet-control-zoomslider-body {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+</style>
+<!-- end -->
+
+
+<script type="text/javascript" src="./js/now/nowCar.js"></script>
+<script type="text/javascript" src="./js/now/nowInit.js"></script>
+<script type="text/javascript" src="./mSelect.js"></script>
+<script type="text/javascript">
+var mySelect = new mSelect('mySelect', 'mSelect.css');
+</script>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="bodydiv">
+    <div id="header">
+      <div class="logo">
+        <img src="images/logo.png" />
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="now.html"><img src="images/now.png" /></a></li>
+          <li><a href="history.html"><img src="images/history.png" /></a></li>
+          <li><a href="#"><img src="images/reports.png" /></a></li>
+          <li><a href="#"><img src="images/service.png" /></a></li>
+          <li><a href="#"><img src="images/account.png" /></a></li>
+        </ul>
+      </div>
+      <!--menu -->
+      <div class="menuright">
+        <ul>
+          <li style="width: 220px; line-height: 60px">Company,inc.<span style="color: #a4b1c3"> Name of User</span></li>
+          <li><a href="#"><img src="images/exit.png" /></a></li>
+        </ul>
+      </div>
+      <!--menuright -->
+    </div>
+    <!--header -->
+    <div class="clear"></div>
+    <div id="side">
+      <div id="map">
+
+        <div id="carIcon"></div>
+
+        <div id="carDetail"></div>
+        <!--carpopupinfo -->
+      </div>
+      
+      <!--map -->
+      <div id="rightside">
+        <div class="listpng">
+          <div>
+            <p>
+              <select id="terminal_group" name="addr" mSty="blueCircle" onchange=javascript:changeList(this.options[this.selectedIndex].value);>
+                <option>选择</option><!-- javascript:changeList(this.options[this.selectedIndex].value); -->
+              </select>
+            </p>
+          </div>
+        </div>
+        
+        <!--listpntDiv -->
+        <div id="carlist">
+  
+        <!-- <div class="line">
+          <img src="images/line.gif" />
+        </div>
+        <div class="greendiv">
+          <ul>
+            <li><img src="images/carlistrect0.gif" /></li>
+            <li><a href="#">trck3</a></li>
+            <li style="width: 80px;">Driving</li>
+            <li style="margin-left: 10px;"><img src="images/carlistpoint0.gif" /></li>
+          </ul>
+        </div>
+
+        <div class="line">
+          <img src="images/line.gif" />
+        </div>
+        <div class="greendiv">
+          <ul>
+            <li><img src="images/carlistrect1.gif" /></li>
+            <li><a href="#">trck3</a></li>
+            <li style="width: 80px;">Stop</li>
+            <li style="margin-left: 10px;"><img src="images/carlistpoint1.gif" /></li>
+          </ul>
+        </div>
+
+        <div class="line">
+          <img src="images/line.gif" />
+        </div>
+        <div class="greendiv">
+          <ul>
+            <li><img src="images/carlistrect2.gif" /></li>
+            <li><a href="#">trck3</a></li>
+            <li style="width: 80px;">Engine off</li>
+            <li style="margin-left: 10px;"><img src="images/carlistpoint2.gif" /></li>
+          </ul>
+        </div>
+
+        <div class="line">
+          <img src="images/line.gif" />
+        </div>
+        <div class="greendiv">
+          <ul>
+            <li><img src="images/carlistrect3.gif" /></li>
+            <li><a href="#">trck3</a></li>
+            <li style="width: 80px;">Speeding</li>
+            <li style="margin-left: 10px;"><img src="images/carlistpoint3.gif" /></li>
+          </ul>
+        </div>
+
+        <div class="line">
+          <img src="images/line.gif" />
+        </div>
+        <div class="greendiv">
+          <ul>
+            <li><img src="images/carlistrect4.gif" /></li>
+            <li><a href="#">trck3</a></li>
+            <li style="width: 80px;">Idlling</li>
+            <li style="margin-left: 10px;"><img src="images/carlistpoint4.gif" /></li>
+          </ul>
+        </div>
+
+        <div class="line">
+          <img src="images/line.gif" />
+        </div>
+        <div class="greendiv">
+          <ul>
+            <li><img src="images/carlistrect5.gif" /></li>
+            <li><a href="#">trck3</a></li>
+            <li style="width: 80px;">Disconnect</li>
+            <li style="margin-left: 10px;"><img src="images/carlistpoint5.gif" /></li>
+          </ul>
+        </div> -->
+        </div>
+
+        <div class="rectcolor"></div>
+        <div class="clear"></div>
+        <div class="selecttable">
+          <ul>
+            <li><label style="cursor: pointer;"><input name="Sound" type="checkbox" value="value" />&nbsp;&nbsp;Sound</label></li>
+            <li><label style="cursor: pointer;"><input name="Traffic Map" type="checkbox" value="value" />&nbsp;&nbsp;Traffic Map</label></li>
+          </ul>
+        </div>
+        <div class="selecttable">
+          <ul>
+            <li><label style="cursor: pointer;"><input id="auto-fit" name="Auto-Fit" type="checkbox" value="1" />&nbsp;&nbsp;Auto-Fit</label></li>
+            <li><label style="cursor: pointer;"><input name="Vehicle Lobel" type="checkbox" value="value" />&nbsp;&nbsp;Vehicle Lobel</label></li>
+          </ul>
+        </div>
+      </div>
+      <!--rightside -->
+    </div>
+    <!--sideDiv -->
+  </div>
+  <!--bodydiv -->
+
+  <!-- car标识的信息 -->
+  <div id="carIconTemplate" style="display: none;">
+    <div class="carblack">
+      <ul>
+        <li><img src="images/carred_direction.png" /></li>
+        <li><a id="carName">Truck3</a></li>
+      </ul>
+    </div>
+  </div>
+<!-- car列表的template -->
+  <div id="carListTemplate" style="display: none;">
+    <div class="line">
+      <img src="images/line.gif" />
+    </div>
+    <div class="greendiv">
+      <ul >
+        <li><img class="carList_v1" src="images/carlistrect0.gif" /></li>
+        <li><a href="javascript:void(0);" class="carList_v2">trcvk3</a></li>
+        <li style="width: 80px;" class="carList_v3">Driving</li>
+        <li style="margin-left: 10px;"><img class="carList_v4" src="images/carlistpoint0.gif" /></li>
+      </ul>
+    </div>
+  </div>
+  <!-- 弹出层详细信息 -->
+  <div id="carDetailTemplate" style="display: none;">
+    <div class="carpopupinfo">
+      <div class="carinfotitle">
+        <ul>
+          <li><img class="car_info_color" src="images/carinfo.gif" /></li>
+          <li class="car_name" style="width: 110px; text-align: center;"></li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+      <div class="carmodel">
+        <ul>
+          <li class="car_commuter">Toyota commuter</li>
+          <li></li>
+          <li class="car_number"
+            style="background: url(images/blackrect.gif) no-repeat; width: 56px; height: 16px; margin-left: 3px; color: #FFF">123-ABC</li>
+        </ul>
+      </div>
+      <div class="carrunstate">Engune off 20 hrs ago</div>
+      <div class="carrunsite">
+        <ul>
+          <li class="car_addr">33balaPI,Calamvale,QLD,4116</li>
+        </ul>
+      </div>
+      <div class="carruntime">
+        <ul>
+          <li class="car_runtime">Wed,Jul 01@1:08:00am</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function changeList(groupId){
+	  global.map.removeLayer(car.featureLayer);
+	  var cb = function(resData){
+			car.carListInit(resData);//初始化右边列表
+			car.initCars(resData);// 初始化markers
+	  };
+	  dataUtil.invokeLinkCarListApi(groupId,cb);
+  }
+</script>
+
+</body>
+</html>
