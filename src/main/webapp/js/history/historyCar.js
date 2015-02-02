@@ -2,7 +2,7 @@ var historyCar = (function() {
 	var /**
 	 * 	右上列表的初始化 开始
 	*resData格式：{group:[{id:'11',groupName:'天河分公司',parentId:'1'},{id:'12',groupName:'珠海分公司',parentId:'2'}]}
-	 */
+	 */ 
 	terminalGroupInit=function(resData){
 		var options='';//<option>选择</option>
 		if(resData!=null && resData.group!=null){

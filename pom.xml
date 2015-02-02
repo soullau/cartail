@@ -33,29 +33,49 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+
+            
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.1.6.v20100715</version>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>yuicompressor-maven-plugin</artifactId>
+                <version>1.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>compress</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 要压缩的js和css -->
+                            <includes>
+                                <include>**/js/api/*.js</include>
+                                <include>**/js/history/*.js</include>
+                                <include>**/js/now/*.js</include>
+                                <include>**/js/chart/car-chart.js</include>
+                            </includes>
+                            <!-- 编码 -->
+                            <encoding>utf8</encoding>
+                            <!-- 压缩过程中是否警告 -->
+                            <failOnWarning>false</failOnWarning>
+                            <!-- 压缩后的文件是否加后缀 -->
+                            <nosuffix>true</nosuffix>
+                            <!-- 若存在已压缩的文件，会先对比源文件是否有改动,有改动便压缩，无改动就不压缩 -->
+                            <force>true</force>
+                            <!-- 在指定的列号后插入新行，-1是不换行，压缩成一行代码 -->
+                            <linebreakpos>-1</linebreakpos>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <webAppConfig>
-                        <contextPath>/ct</contextPath>
-                    </webAppConfig>
+                    <!-- 已经压缩的js和css，打包时要排除源文件，否则源文件会覆盖压缩文件，即起不到压缩效果啦 -->
+                    <warSourceExcludes>**/js/api/*.js,**/js/history/*.js,**/js/now/*.js,**/js/chart/car-chart.js</warSourceExcludes>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>tomcat-maven-plugin</artifactId>
-                <version>1.1</version>
-            </plugin>
-
-            <!-- <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat-maven-plugin</artifactId>
-                <version>2.1</version>
-                </plugin> -->
-
         </plugins>
     </build>
 </project>
