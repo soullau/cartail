@@ -68,7 +68,7 @@ public class StartupListener implements ServletContextListener {
 
     public static void startTask() {
         Timer timer = new Timer();
-        timer.schedule(new MyTask(), 1000, 4000);//在1秒后执行此任务,每次间隔2秒执行一次,如果传递一个Data参数,就可以在某个固定的时间执行这个任务.     
+        timer.schedule(new MyTask(), 1000, 3000);//在1秒后执行此任务,每次间隔2秒执行一次,如果传递一个Data参数,就可以在某个固定的时间执行这个任务.     
     }
 
     static class MyTask extends java.util.TimerTask {
