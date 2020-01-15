@@ -6,6 +6,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="context-root" value="cartrail"/>
         <property name="java-output-path" value="/cartrail/target/classes"/>
-        <property name="component.exclusion.patterns" value="**/js/**,**/css/**"/>
+        <property name="component.exclusion.patterns" value="**/js/api/*.js,**/js/history/*.js,**/js/now/*.js,**/js/chart/car-chart.js"/>
     </wb-module>
 </project-modules>
