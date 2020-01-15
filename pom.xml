@@ -72,7 +72,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                    <!-- 已经压缩的js和css，打包时要排除源文件，否则源文件会覆盖压缩文件，即起不到压缩效果啦 -->
+                    <!-- 压缩的js和css，打包时要排除源文件，否则源文件会覆盖压缩文件，即起不到压缩效果啦 -->
                     <warSourceExcludes>**/js/api/*.js,**/js/history/*.js,**/js/now/*.js,**/js/chart/car-chart.js</warSourceExcludes>
                 </configuration>
             </plugin>
